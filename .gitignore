@@ -12,8 +12,8 @@ dist/
 .DS_Store
 
 # ML
-backend/model/*.pkl
-backend/data/*.json
+# backend/model/*.pkl
+# backend/data/*.json
 
 .vscode/
 .cache/

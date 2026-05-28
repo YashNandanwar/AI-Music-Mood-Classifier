@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "danceability": 0.41,
+        "energy": 0.35,
+        "loudness": -3.57,
+        "tempo": 153.69,
+        "valence": 0.72,
+        "mood": "Romantic",
+        "confidence": "31%",
+        "song_name": "Babydoll - Demo Artist"
+    },
+    {
+        "id": 2,
+        "danceability": 0.61,
+        "energy": 0.43,
+        "loudness": -12.14,
+        "tempo": 119.79,
+        "valence": 0.37,
+        "mood": "Romantic",
+        "confidence": "40%",
+        "song_name": "Bairan - Demo Artist"
+    },
+    {
+        "id": 3,
+        "danceability": 0.72,
+        "energy": 0.62,
+        "loudness": -8.19,
+        "tempo": 136.36,
+        "valence": 0.4,
+        "mood": "Romantic",
+        "confidence": "28%",
+        "song_name": "Inaaam - Demo Artist"
+    },
+    {
+        "id": 4,
+        "danceability": 0.65,
+        "energy": 0.65,
+        "loudness": -9.23,
+        "tempo": 155.85,
+        "valence": 0.51,
+        "mood": "Romantic",
+        "confidence": "30%",
+        "song_name": "Inaam - Demo Artist"
+    },
+    {
+        "id": 5,
+        "danceability": 0.77,
+        "energy": 0.48,
+        "loudness": -14.75,
+        "tempo": 174.53,
+        "valence": 0.14,
+        "mood": "Angry",
+        "confidence": "32%",
+        "song_name": "Daylight - Demo Artist"
+    }
+]
