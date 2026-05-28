@@ -1,0 +1,333 @@
+:root {
+  --bg-color: #121212;      /* Spotify Darker Gray */
+  --card-bg: #181818;       /* Spotify Card Gray */
+  --card-hover: #282828;
+  --text-color: #ffffff;
+  --text-muted: #b3b3b3;
+  --accent-color: #1DB954;  /* Spotify Green */
+  --happy: #facc15;
+  --sad: #60a5fa;
+  --energetic: #f87171;
+  --calm: #1DB954;
+  --romantic: #f472b6;
+  --angry: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Circular Std', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Navbar */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1.25rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: -0.05rem;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--text-color);
+}
+
+/* Home Page */
+.hero {
+  text-align: center;
+  padding: 5rem 0;
+  background: linear-gradient(to bottom, #1db95433, #121212);
+}
+
+.hero h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  letter-spacing: -0.1rem;
+}
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.25rem;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  padding: 2rem 0 5rem;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form */
+.mood-form {
+  background-color: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+  transition: background-color 0.3s;
+}
+
+.mood-form:hover {
+  background-color: var(--card-hover);
+}
+
+.mood-form h3 {
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  color: var(--text-muted);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 0.25rem;
+  border: none;
+  background-color: #3e3e3e;
+  color: white;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: 2px solid #535353;
+  background-color: #4a4a4a;
+}
+
+.btn-predict {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--accent-color);
+  color: black;
+  border: none;
+  border-radius: 500px; /* Spotify pill shape */
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn-predict:hover {
+  background-color: #1ed760;
+  transform: scale(1.02);
+}
+
+.btn-predict:active {
+  transform: scale(0.98);
+}
+
+/* Result Card */
+.result-card {
+  background-color: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.song-info {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #282828;
+  border-radius: 0.5rem;
+  border-left: 6px solid var(--accent-color);
+}
+
+.song-info p {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.demo-tag {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.mood-display {
+  font-size: 1.5rem;
+}
+
+.mood-label {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.mood-value {
+  font-weight: 900;
+  margin-left: 0.75rem;
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
+/* History */
+.history-panel {
+  background-color: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.history-header h3 {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.clear-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid #535353;
+  padding: 0.5rem 1.25rem;
+  border-radius: 500px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  transition: all 0.2s;
+}
+
+.clear-btn:hover {
+  border-color: white;
+  color: white;
+}
+
+.history-table-container {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #282828;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.history-table td {
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #282828;
+}
+
+.history-table tr:hover td {
+  background-color: #282828;
+}
+
+/* Mode Selector */
+.mode-selector {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #535353;
+  background: transparent;
+  color: white;
+  border-radius: 500px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.mode-btn.active {
+  background: white;
+  color: black;
+  border-color: white;
+}
+
+.loading-text {
+  font-weight: 700;
+  color: var(--accent-color);
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
