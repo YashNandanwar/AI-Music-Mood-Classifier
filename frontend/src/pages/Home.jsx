@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MoodForm from '../components/MoodForm';
 import ResultCard from '../components/ResultCard';
 import History from '../components/History';
-import { predictMood, predictMoodByName, getHistory, clearHistory } from '../services/api';
+import { predictMoodByName, getHistory, clearHistory } from '../services/api';
 
 const Home = () => {
     const [result, setResult] = useState(null);
@@ -33,19 +33,6 @@ const Home = () => {
         }
     };
 
-    const handlePredict = async (formData) => {
-        setLoading(true);
-        try {
-            const data = await predictMood(formData);
-            setResult(data);
-            fetchHistory();
-        } catch (error) {
-            alert('Error predicting mood. Is the backend running?');
-        } finally {
-            setLoading(false);
-        }
-    };
-
     const handlePredictByName = async (songName) => {
         setLoading(true);
         try {
@@ -68,7 +55,7 @@ const Home = () => {
             </div>
             <div className="main-content container">
                 <div className="form-section">
-                    <MoodForm onPredict={handlePredict} onPredictByName={handlePredictByName} />
+                    <MoodForm onPredictByName={handlePredictByName} />
                 </div>
                 <div className="results-section">
                     {loading ? <p className="loading-text">Analyzing Song Features...</p> : <ResultCard result={result} />}

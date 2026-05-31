@@ -31,7 +31,11 @@ const ResultCard = ({ result }) => {
             {result.song && (
                 <div className="song-info">
                     <p><strong>{result.song}</strong> by {result.artist}</p>
-                    {result.is_demo && <small className="demo-tag"> (Demo Data)</small>}
+                    {result.is_restricted && (
+                        <small className="demo-tag" style={{ color: '#94a3b8', fontSize: '0.75rem', display: 'block', marginTop: '4px' }}>
+                            (Note: Song features simulated due to Spotify API restrictions)
+                        </small>
+                    )}
                 </div>
             )}
             
