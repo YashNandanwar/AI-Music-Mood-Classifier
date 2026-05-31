@@ -92,9 +92,9 @@ def predict_by_name():
         
         # Fetch features from Spotify
         spotify_data = fetch_audio_features(song_name)
-        if "error" in spotify_data:
-            print(f"DEBUG: Spotify fetch failed: {spotify_data['error']}")
-            return jsonify(spotify_data), 400
+        if not spotify_data.get('success'):
+            print(f"DEBUG: Spotify fetch failed: {spotify_data.get('error')}")
+            return jsonify({"error": spotify_data.get('error')}), 400
 
         features = spotify_data.get('features')
         if not features:
@@ -117,7 +117,6 @@ def predict_by_name():
             save_json_data(Config.DATA_PATH, history)
         except Exception as e:
             print(f"DEBUG: Failed to save history: {e}")
-            # We continue even if saving history fails
 
         return jsonify({
             "mood": prediction,
@@ -125,7 +124,7 @@ def predict_by_name():
             "song": spotify_data.get('song', 'Unknown'),
             "artist": spotify_data.get('artist', 'Unknown'),
             "features": features,
-            "is_demo": spotify_data.get('is_demo', False)
+            "is_restricted": spotify_data.get('is_restricted', False)
         })
     except Exception as e:
         import traceback
