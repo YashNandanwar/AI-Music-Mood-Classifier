@@ -8,6 +8,20 @@ const Home = () => {
     const [result, setResult] = useState(null);
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [mobileStep, setMobileStep] = useState(1); // 1: Search, 2: Result
+
+    useEffect(() => {
+        const handleResize = () => {
+            const mobile = window.innerWidth <= 768;
+            setIsMobile(mobile);
+            // Reset to step 1 if we switch from desktop to mobile to be safe,
+            // or if it's already desktop, steps don't matter.
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         fetchHistory();
@@ -35,6 +49,9 @@ const Home = () => {
 
     const handlePredictByName = async (songName) => {
         setLoading(true);
+        if (isMobile) {
+            setMobileStep(2);
+        }
         try {
             const data = await predictMoodByName(songName);
             setResult(data);
@@ -44,13 +61,45 @@ const Home = () => {
             const msg = error.response?.data?.error || 
                         error.message || 
                         'Error predicting mood by name. Please check if the backend is running.';
-            setError(msg);
             alert(msg);
+            if (isMobile) {
+                setMobileStep(1); // Go back if error occurs on mobile
+            }
         } finally {
             setLoading(false);
         }
-        };
+    };
 
+    const renderMobileView = () => {
+        if (mobileStep === 1) {
+            return (
+                <div className="form-section">
+                    <MoodForm onPredictByName={handlePredictByName} />
+                </div>
+            );
+        } else {
+            return (
+                <div className="results-section">
+                    <button 
+                        className="back-btn" 
+                        onClick={() => setMobileStep(1)}
+                    >
+                        ← Back to Search
+                    </button>
+                    {loading ? (
+                        <div className="loading-container">
+                            <p className="loading-text">Analyzing Song Features...</p>
+                        </div>
+                    ) : (
+                        <>
+                            <ResultCard result={result} />
+                            <History history={history} onClearHistory={handleClearHistory} />
+                        </>
+                    )}
+                </div>
+            );
+        }
+    };
 
     return (
         <main className="home-page">
@@ -58,14 +107,21 @@ const Home = () => {
                 <h2>Analyze Your Music Mood</h2>
                 <p>Discover the emotional vibe of any song using AI.</p>
             </div>
+            
             <div className="main-content container">
-                <div className="form-section">
-                    <MoodForm onPredictByName={handlePredictByName} />
-                </div>
-                <div className="results-section">
-                    {loading ? <p className="loading-text">Analyzing Song Features...</p> : <ResultCard result={result} />}
-                    <History history={history} onClearHistory={handleClearHistory} />
-                </div>
+                {isMobile ? (
+                    renderMobileView()
+                ) : (
+                    <>
+                        <div className="form-section">
+                            <MoodForm onPredictByName={handlePredictByName} />
+                        </div>
+                        <div className="results-section">
+                            {loading ? <p className="loading-text">Analyzing Song Features...</p> : <ResultCard result={result} />}
+                            <History history={history} onClearHistory={handleClearHistory} />
+                        </div>
+                    </>
+                )}
             </div>
         </main>
     );
