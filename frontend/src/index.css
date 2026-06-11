@@ -379,75 +379,79 @@ body {
   }
 
   .hero-title {
-    font-size: 2.2rem !important; /* Scale up to match subtext width */
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    white-space: normal; /* Allow wrapping if needed but keep it large */
+    font-size: 7.5vw !important; /* Fluid font size to fit one line */
+    white-space: nowrap;
+    margin-bottom: 1rem;
     width: 100%;
-    max-width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
   }
 
   .hero p {
-    font-size: 1.1rem;
-    max-width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 0.9rem;
+    max-width: 85vw;
+    margin: 0 auto;
   }
 
-  .mood-form {
-    margin: 0 1rem;
-    padding: 1.5rem;
+  /* Force containers to fit screen exactly */
+  .main-content.container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .mood-form, .result-card, .history-panel {
+    margin: 1rem;
     width: calc(100% - 2rem);
-  }
-
-  /* Result Card & Graph Responsive Fix */
-  .result-card {
-    margin: 0 1rem 2rem;
     padding: 1.5rem;
-    width: calc(100% - 2rem);
-    overflow: hidden; /* Prevent internal overflow */
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent any internal content from leaking */
   }
 
+  /* Ensure graph fits */
   .chart-container {
-    height: 200px !important; /* Slightly smaller for mobile */
+    height: 180px !important;
     width: 100% !important;
+    margin-left: -10px; /* Slight offset for better centering on small screens */
   }
 
-  /* History Table Responsive Fix */
-  .history-panel {
-    margin: 0 1rem;
-    padding: 1.5rem;
-    width: calc(100% - 2rem);
-  }
-
+  /* Ensure history table fits */
   .history-table-container {
     width: 100%;
-    overflow-x: auto; /* Enable scrolling for table */
+    overflow-x: auto;
+    display: block;
     -webkit-overflow-scrolling: touch;
   }
 
   .history-table {
-    min-width: 450px; /* Ensure table doesn't squash too much */
-  }
-
-  .results-section.mobile-results {
-    padding: 0 0 5rem;
     width: 100%;
+    min-width: 400px; /* Allow scrolling rather than squashing */
   }
 
+  /* Cute Back Button */
   .mobile-bottom-back {
-    margin-top: 3rem;
-    margin-bottom: 4rem;
-    align-self: center;
+    margin: 2rem auto 4rem;
+    padding: 0.8rem 2rem;
     background: transparent !important;
-    border: 2px solid var(--accent-color) !important;
+    border: 1.5px solid var(--accent-color) !important;
     color: var(--accent-color) !important;
-    backdrop-filter: blur(5px);
-    width: 80% !important;
-    max-width: 300px;
-    transition: all 0.3s ease;
+    border-radius: 50px !important; /* Super curved/cute */
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: none; /* Less aggressive than uppercase */
+    letter-spacing: 0.02rem;
+    width: auto !important;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-bottom-back:hover {
+    background: rgba(29, 185, 84, 0.1) !important;
+    transform: scale(1.05);
   }
 
   .mobile-bottom-back:hover {
