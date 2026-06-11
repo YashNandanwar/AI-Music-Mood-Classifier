@@ -22,8 +22,9 @@ const MoodForm = ({ onPredictByName }) => {
                     />
                 </div>
                 <button type="submit" className="btn-predict">
-                    Proceed & Predict Mood
+                    Search & Predict Mood
                 </button>
+
             </form>
         </div>
     );
