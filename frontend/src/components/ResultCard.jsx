@@ -82,12 +82,12 @@ const ResultCard = ({ result }) => {
                             <XAxis 
                                 dataKey="name" 
                                 stroke="#94a3b8" 
-                                fontSize={isMobile ? 8.5 : 10} 
+                                fontSize={isMobile ? 7.5 : 10} 
                                 interval={0} 
                                 tick={{ fill: '#94a3b8' }}
-                                angle={isMobile ? -35 : 0}
-                                textAnchor={isMobile ? "end" : "middle"}
-                                height={isMobile ? 70 : 30}
+                                angle={0}
+                                textAnchor="middle"
+                                height={isMobile ? 40 : 30}
                             />
                             <YAxis stroke="#94a3b8" fontSize={10} domain={[0, 1]} />
                             <Tooltip 
