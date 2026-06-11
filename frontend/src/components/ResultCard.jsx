@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const ResultCard = ({ result }) => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     if (!result) return null;
 
     // Define colors for different moods
@@ -40,30 +48,46 @@ const ResultCard = ({ result }) => {
             )}
             
             <div className="result-main">
-                <div className="result-text mobile-align-left">
-                    <div className="mood-display-row">
-                        <span className="mood-label">Predicted Mood:</span>
-                        <span className={`mood-value-inline ${result.mood.toLowerCase()}`}>{result.mood}</span>
+                {isMobile ? (
+                    <div className="result-text mobile-align-left">
+                        <div className="mood-display-row">
+                            <span className="mood-label">Predicted Mood:</span>
+                            <span className={`mood-value-inline ${result.mood.toLowerCase()}`}>{result.mood}</span>
+                        </div>
+                        <div className="confidence-display-row">
+                            <span className="confidence-label">Confidence:</span>
+                            <span className="confidence-value">{result.confidence}</span>
+                        </div>
                     </div>
-                    <div className="confidence-display-row">
-                        <span className="confidence-label">Confidence:</span>
-                        <span className="confidence-value">{result.confidence}</span>
+                ) : (
+                    <div className="result-text">
+                        <div className="mood-display">
+                            <span className="mood-label">Predicted Mood:</span>
+                            <span className={`mood-value ${result.mood.toLowerCase()}`}>{result.mood}</span>
+                        </div>
+                        <div className="confidence-display">
+                            <span className="confidence-label">Confidence:</span>
+                            <span className="confidence-value">{result.confidence}</span>
+                        </div>
                     </div>
-                </div>
+                )}
 
-                <div className="chart-container mobile-centered-chart" style={{ width: '100%', height: 250, marginTop: '20px' }}>
+                <div className={`chart-container ${isMobile ? 'mobile-centered-chart' : ''}`} style={{ width: '100%', height: isMobile ? 250 : 250, marginTop: '20px' }}>
                     <ResponsiveContainer>
-                        <LineChart data={chartData} margin={{ top: 10, right: 30, left: -25, bottom: 20 }}>
+                        <LineChart 
+                            data={chartData} 
+                            margin={isMobile ? { top: 10, right: 30, left: -25, bottom: 20 } : { top: 5, right: 30, left: 20, bottom: 5 }}
+                        >
                             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                             <XAxis 
                                 dataKey="name" 
                                 stroke="#94a3b8" 
-                                fontSize={8.5} 
+                                fontSize={isMobile ? 8.5 : 10} 
                                 interval={0} 
                                 tick={{ fill: '#94a3b8' }}
-                                angle={-35}
-                                textAnchor="end"
-                                height={70}
+                                angle={isMobile ? -35 : 0}
+                                textAnchor={isMobile ? "end" : "middle"}
+                                height={isMobile ? 70 : 30}
                             />
                             <YAxis stroke="#94a3b8" fontSize={10} domain={[0, 1]} />
                             <Tooltip 
