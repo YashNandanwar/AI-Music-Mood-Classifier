@@ -1,19 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Navbar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const toggleMenu = () => {
+        if (isMobile) {
+            setIsMenuOpen(!isMenuOpen);
+        }
+    };
+
     return (
         <nav className="navbar">
             <div className="container">
-                <div className="logo-container">
+                <div className="logo-container" onClick={toggleMenu} style={{ cursor: isMobile ? 'pointer' : 'default' }}>
                     <svg className="spotify-logo" viewBox="0 0 24 24" width="32" height="32" fill="#1DB954">
                         <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.508 17.302c-.223.367-.703.483-1.07.26-2.92-1.785-6.596-2.188-10.927-1.198-.418.095-.838-.17-.933-.587-.095-.418.17-.838.587-.933 4.742-1.085 8.8-1.206 12.083.8.367.224.483.704.26 1.07zm1.47-3.253c-.28.455-.877.6-1.332.32-3.34-2.053-8.432-2.65-12.382-1.452-.512.155-1.045-.133-1.2-.646-.155-.512.133-1.045.646-1.2 4.515-1.372 10.13-.7 13.948 1.65.455.28.6.877.32 1.332zm.127-3.414C15.223 8.355 8.783 8.14 5.016 9.284c-.605.184-1.247-.16-1.43-.765-.184-.605.16-1.247.765-1.43 4.316-1.31 11.43-1.06 15.89 1.587.544.323.722 1.026.4 1.57-.323.544-1.026.722-1.57.4z"/>
                     </svg>
                     <h1 className="logo">Spotify Song Prediction Ai</h1>
                 </div>
-                <ul className="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#history">History</a></li>
-                </ul>
+                
+                {isMobile ? (
+                    isMenuOpen && (
+                        <div className="mobile-menu-popup">
+                            <ul className="mobile-nav-links">
+                                <li><a href="#home" onClick={() => setIsMenuOpen(false)}>Home</a></li>
+                                <li><a href="#history" onClick={() => setIsMenuOpen(false)}>History</a></li>
+                            </ul>
+                        </div>
+                    )
+                ) : (
+                    <ul className="nav-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#history">History</a></li>
+                    </ul>
+                )}
             </div>
         </nav>
     );

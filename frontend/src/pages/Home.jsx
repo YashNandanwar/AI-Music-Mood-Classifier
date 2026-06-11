@@ -79,13 +79,7 @@ const Home = () => {
             );
         } else {
             return (
-                <div className="results-section">
-                    <button 
-                        className="back-btn" 
-                        onClick={() => setMobileStep(1)}
-                    >
-                        ← Back to Search
-                    </button>
+                <div className="results-section mobile-results">
                     {loading ? (
                         <div className="loading-container">
                             <p className="loading-text">Analyzing Song Features...</p>
@@ -96,6 +90,12 @@ const Home = () => {
                             <History history={history} onClearHistory={handleClearHistory} />
                         </>
                     )}
+                    <button 
+                        className="back-btn mobile-bottom-back" 
+                        onClick={() => setMobileStep(1)}
+                    >
+                        ← Back to Search
+                    </button>
                 </div>
             );
         }
@@ -104,7 +104,7 @@ const Home = () => {
     return (
         <main className="home-page">
             <div className="hero">
-                <h2>Analyze Your Music Mood</h2>
+                <h2 className="hero-title">Analyze Your Music Mood</h2>
                 <p>Discover the emotional vibe of any song using AI.</p>
             </div>
             
