@@ -440,14 +440,16 @@ body {
     font-size: 1.2rem;
   }
 
-  .mobile-centered-chart {
+  /* Ensure graph fits precisely and is centered */
+  .chart-container.mobile-centered-chart {
+    height: 260px !important; /* Increased size */
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 1.5rem 0 !important;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: 100% !important;
-    overflow: visible !important; /* Allow labels to breathe */
+    overflow: visible !important;
   }
 
   .result-text.mobile-align-left {

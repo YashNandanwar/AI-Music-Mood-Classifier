@@ -51,19 +51,19 @@ const ResultCard = ({ result }) => {
                     </div>
                 </div>
 
-                <div className="chart-container mobile-centered-chart" style={{ width: '100%', height: 220, marginTop: '20px' }}>
+                <div className="chart-container mobile-centered-chart" style={{ width: '100%', height: 250, marginTop: '20px' }}>
                     <ResponsiveContainer>
-                        <LineChart data={chartData} margin={{ top: 5, right: 20, left: -20, bottom: 5 }}>
+                        <LineChart data={chartData} margin={{ top: 10, right: 30, left: -25, bottom: 20 }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                             <XAxis 
                                 dataKey="name" 
                                 stroke="#94a3b8" 
-                                fontSize={9} 
+                                fontSize={8.5} 
                                 interval={0} 
                                 tick={{ fill: '#94a3b8' }}
-                                angle={-15}
+                                angle={-35}
                                 textAnchor="end"
-                                height={50}
+                                height={70}
                             />
                             <YAxis stroke="#94a3b8" fontSize={10} domain={[0, 1]} />
                             <Tooltip 
