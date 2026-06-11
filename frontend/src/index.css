@@ -418,15 +418,44 @@ body {
     margin: 1.5rem 0 0 !important;
   }
 
-  .mood-value {
-    font-size: 1.5rem !important; /* Prevent text-driven overflow */
-    word-break: break-all;
+  /* New Mood & Confidence Layout */
+  .mood-display-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
   }
 
-  .mood-display {
+  .confidence-display-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .mood-value-inline {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+
+  .mobile-centered-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
+    overflow: visible !important; /* Allow labels to breathe */
+  }
+
+  .result-text.mobile-align-left {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    text-align: left;
+    margin-bottom: 1rem;
   }
 
   /* Ensure history table fits */

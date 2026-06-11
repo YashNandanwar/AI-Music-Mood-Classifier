@@ -40,26 +40,30 @@ const ResultCard = ({ result }) => {
             )}
             
             <div className="result-main">
-                <div className="result-text">
-                    <div className="mood-display">
+                <div className="result-text mobile-align-left">
+                    <div className="mood-display-row">
                         <span className="mood-label">Predicted Mood:</span>
-                        <span className={`mood-value ${result.mood.toLowerCase()}`}>{result.mood}</span>
+                        <span className={`mood-value-inline ${result.mood.toLowerCase()}`}>{result.mood}</span>
                     </div>
-                    <div className="confidence-display">
+                    <div className="confidence-display-row">
                         <span className="confidence-label">Confidence:</span>
                         <span className="confidence-value">{result.confidence}</span>
                     </div>
                 </div>
 
-                <div className="chart-container" style={{ width: '100%', height: 250, marginTop: '20px' }}>
+                <div className="chart-container mobile-centered-chart" style={{ width: '100%', height: 220, marginTop: '20px' }}>
                     <ResponsiveContainer>
-                        <LineChart data={chartData}>
+                        <LineChart data={chartData} margin={{ top: 5, right: 20, left: -20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                             <XAxis 
                                 dataKey="name" 
                                 stroke="#94a3b8" 
-                                fontSize={10} 
+                                fontSize={9} 
                                 interval={0} 
+                                tick={{ fill: '#94a3b8' }}
+                                angle={-15}
+                                textAnchor="end"
+                                height={50}
                             />
                             <YAxis stroke="#94a3b8" fontSize={10} domain={[0, 1]} />
                             <Tooltip 
