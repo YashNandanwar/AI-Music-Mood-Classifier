@@ -40,12 +40,17 @@ const Home = () => {
             setResult(data);
             fetchHistory();
         } catch (error) {
-            const msg = error.response?.data?.error || 'Error predicting mood by name.';
+            console.error('Prediction error:', error);
+            const msg = error.response?.data?.error || 
+                        error.message || 
+                        'Error predicting mood by name. Please check if the backend is running.';
+            setError(msg);
             alert(msg);
         } finally {
             setLoading(false);
         }
-    };
+        };
+
 
     return (
         <main className="home-page">

@@ -1,1 +1,13 @@
-[]
+[
+    {
+        "id": 1,
+        "danceability": 0.63,
+        "energy": 0.41,
+        "loudness": -14.6,
+        "tempo": 98.08,
+        "valence": 0.7,
+        "mood": "Romantic",
+        "confidence": "34%",
+        "song_name": "TUCA DONKA - DJ FKU"
+    }
+]

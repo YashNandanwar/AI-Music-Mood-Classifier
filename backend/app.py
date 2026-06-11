@@ -146,4 +146,4 @@ def clear_history():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=Config.DEBUG, port=5000)
+    app.run(debug=Config.DEBUG, port=5000, threaded=True)
